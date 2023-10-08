@@ -15,15 +15,15 @@
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{{ asset('public/FE/css/bootstrap.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('public/FE/css/font-awesome.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('public/FE/css/elegant-icons.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('public/FE/css/jquery-ui.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('public/FE/css/magnific-popup.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('public/FE/css/owl.carousel.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('public/FE/css/slicknav.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('public/FE/css/style.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('public/FE/css/dropdown.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/bootstrap.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/font-awesome.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/elegant-icons.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/jquery-ui.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/magnific-popup.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/owl.carousel.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/slicknav.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/dropdown.css')}}" type="text/css">
 </head>
 
 <body>
@@ -43,7 +43,7 @@
                 </a></li>
         </ul>
         <div class="offcanvas__logo">
-            <a href="./index.html"><img src="{{ asset('public/FE/img/logo.png')}}" alt=""></a>
+            <a href="./index.html"><img src="{{ asset('FE/img/logo.png')}}" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__auth">
@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-2">
                     <div class="header__logo">
-                        <a href="{{ URL::to('/home') }}"><img src="{{ asset('public/FE/img/logo.png')}}" alt=""></a>
+                        <a href="{{ URL::to('/home') }}"><img src="{{ asset('FE/img/logo.png')}}" alt=""></a>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-7">
@@ -114,7 +114,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('public/FE/img/instagram/insta-1.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-1.jpg')}}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -122,7 +122,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('public/FE/img/instagram/insta-2.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-2.jpg')}}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -130,7 +130,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('public/FE/img/instagram/insta-3.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-3.jpg')}}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -138,7 +138,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('public/FE/img/instagram/insta-4.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-4.jpg')}}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -146,7 +146,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('public/FE/img/instagram/insta-5.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-5.jpg')}}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -154,7 +154,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('public/FE/img/instagram/insta-6.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-6.jpg')}}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -173,16 +173,16 @@
                 <div class="col-lg-4 col-md-6 col-sm-7">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="./index.html"><img src="{{ asset('public/FE/img/logo.png')}}" alt=""></a>
+                            <a href="./index.html"><img src="{{ asset('FE/img/logo.png')}}" alt=""></a>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                             cilisis.</p>
                         <div class="footer__payment">
-                            <a href="#"><img src="{{ asset('public/FE/img/payment/payment-1.png')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('public/FE/img/payment/payment-2.png')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('public/FE/img/payment/payment-3.png')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('public/FE/img/payment/payment-4.png')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('public/FE/img/payment/payment-5.png')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('FE/img/payment/payment-1.png')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('FE/img/payment/payment-2.png')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('FE/img/payment/payment-3.png')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('FE/img/payment/payment-4.png')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('FE/img/payment/payment-5.png')}}" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -254,16 +254,16 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
-    <script src="{{ asset('public/FE/js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{ asset('public/FE/js/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('public/FE/js/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{ asset('public/FE/js/jquery-ui.min.js')}}"></script>
-    <script src="{{ asset('public/FE/js/mixitup.min.js')}}"></script>
-    <script src="{{ asset('public/FE/js/jquery.countdown.min.js')}}"></script>
-    <script src="{{ asset('public/FE/js/jquery.slicknav.js')}}"></script>
-    <script src="{{ asset('public/FE/js/owl.carousel.min.js')}}"></script>
-    <script src="{{ asset('public/FE/js/jquery.nicescroll.min.js')}}"></script>
-    <script src="{{ asset('public/FE/js/main.js')}}"></script>
+    <script src="{{ asset('FE/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{ asset('FE/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('FE/js/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{ asset('FE/js/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('FE/js/mixitup.min.js')}}"></script>
+    <script src="{{ asset('FE/js/jquery.countdown.min.js')}}"></script>
+    <script src="{{ asset('FE/js/jquery.slicknav.js')}}"></script>
+    <script src="{{ asset('FE/js/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('FE/js/jquery.nicescroll.min.js')}}"></script>
+    <script src="{{ asset('FE/js/main.js')}}"></script>
 </body>
 
 </html>
