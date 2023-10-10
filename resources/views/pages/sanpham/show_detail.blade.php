@@ -33,13 +33,14 @@
                     <div class="product__details__price">{{ number_format($value->product_price).' '.'VNĐ'}}<span>$ 830,000</span></div>
                     <p>{{ ($value->product_desc) }}</p>
 
+
                     <form action="{{ URL::to('/save_cart') }}" method="POST">
                         {{ csrf_field() }}
                     <div class="product__details__button">
                         <div class="quantity">
                             <span>Quantity:</span>
                             <div class="pro-qty">
-                                <input name="qty" type="number" min="1" value="1">
+                                <input name="qty" type="text" min="1" value="1">
                                 <input name="productid_hidden" type="hidden" value="{{ $value->product_id }}">
 
                             </div>
@@ -48,8 +49,9 @@
                             <span class="icon_bag_alt"></span> Add to cart
                         </button>
                     </div>
-
                     </form>
+
+
                     <div class="product__details__widget">
                         <ul>
                             <li>

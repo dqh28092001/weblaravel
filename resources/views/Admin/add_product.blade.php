@@ -67,8 +67,8 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Hiển Thị</label>
                             <select name="product_status" class="form-control input-sm m-bot15">
-                                <option value="0">Ẩn</option>
-                                <option value="1">Hiện Thị</option>
+                                <option value="0">Hiện Thị</option>
+                                <option value="1">Ẩn</option>
                             </select>
                         </div>
 

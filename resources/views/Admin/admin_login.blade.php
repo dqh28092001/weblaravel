@@ -13,18 +13,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
-<link rel="stylesheet" href="{{ asset ('public/BE/css/bootstrap.min.css')}}" >
+<link rel="stylesheet" href="{{ asset ('BE/css/bootstrap.min.css')}}" >
 <!-- //bootstrap-css -->
 <!-- Custom CSS -->
-<link href="{{ asset ('public/BE/css/style.css')}}" rel='stylesheet' type='text/css' />
-<link href="{{ asset ('public/BE/css/style-responsive.css')}}" rel="stylesheet"/>
+<link href="{{ asset ('BE/css/style.css')}}" rel='stylesheet' type='text/css' />
+<link href="{{ asset ('BE/css/style-responsive.css')}}" rel="stylesheet"/>
 <!-- font CSS -->
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <!-- font-awesome icons -->
-<link rel="stylesheet" href="{{ asset ('public/BE/css/font.css')}}" type="text/css')}}"/>
-<link href="{{ asset ('cpublic/BE/ss/font-awesome.css')}}" rel="stylesheet"> 
+<link rel="stylesheet" href="{{ asset ('BE/css/font.css')}}" type="text/css')}}"/>
+<link href="{{ asset ('cBE/ss/font-awesome.css')}}" rel="stylesheet"> 
 <!-- //font-awesome icons -->
-<script src="{{ asset ('public/BE/js/jquery2.0.3.min.js')}}"></script>
+<script src="{{ asset ('BE/js/jquery2.0.3.min.js')}}"></script>
 </head>
 <body>
 <div class="log-w3">
@@ -49,12 +49,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		{{-- <p>Don't Have an Account ?<a href="registration.html">Create an account</a></p> --}}
 </div>
 </div>
-<script src="{{ asset ('public/BE/js/bootstrap.js')}}"></script>
-<script src="{{ asset ('public/BE/js/jquery.dcjqaccordion.2.7.js')}}"></script>
-<script src="{{ asset ('public/BE/js/scripts.js')}}"></script>
-<script src="{{ asset ('public/BE/js/jquery.slimscroll.js')}}"></script>
-<script src="{{ asset ('public/BE/js/jquery.nicescroll.js')}}"></script>
-<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="{{ asset ('public/BE/js/flot-chart/excanvas.min.js')}}"></script><![endif]-->
-<script src="{{ asset ('public/BE/js/jquery.scrollTo.js')}}"></script>
+<script src="{{ asset ('BE/js/bootstrap.js')}}"></script>
+<script src="{{ asset ('BE/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+<script src="{{ asset ('BE/js/scripts.js')}}"></script>
+<script src="{{ asset ('BE/js/jquery.slimscroll.js')}}"></script>
+<script src="{{ asset ('BE/js/jquery.nicescroll.js')}}"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="{{ asset ('BE/js/flot-chart/excanvas.min.js')}}"></script><![endif]-->
+<script src="{{ asset ('BE/js/jquery.scrollTo.js')}}"></script>
 </body>
 </html>

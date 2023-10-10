@@ -90,9 +90,9 @@
             <div class="col-lg-3 col-md-4">
                 <div class="product__item">
                     <div class="product__item__pic set-bg"
-                        data-setbg="{{ URL::to('upload/product/'.$product->product_image)}}">
+                        data-setbg="{{ URL::to('public/upload/product/'.$product->product_image)}}">
                         <ul class="product__hover">
-                            <li><a href="{{ URL::to('upload/product/'.$product->product_image)}}" class="image-popup"><span
+                            <li><a href="{{ URL::to('public/upload/product/'.$product->product_image)}}" class="image-popup"><span
                                         class="arrow_expand"></span></a></li>
                             <li><a href="{{ URL::to('/detail_product/'.$product->product_id) }}"><span class="icon_heart_alt"></span></a></li>
                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
