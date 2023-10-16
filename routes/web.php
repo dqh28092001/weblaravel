@@ -82,4 +82,9 @@ Route::get('/show_cart', [CartController::class,'show_cart']);
 Route::get('/delete_to_cart/{rowId}', [CartController::class,'delete_to_cart']); 
 Route::post('/update_cart', [CartController::class,'update_cart']); 
 
+// add to cart ajax
+Route::post('/add-cart-ajax',[CartController::class,'add_cart_ajax']);
+Route::get('/show_cart_ajax', [CartController::class,'show_cart_ajax']); 
+
+
 

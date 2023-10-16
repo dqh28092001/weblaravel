@@ -15,15 +15,16 @@
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{{ asset('FE/css/bootstrap.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('FE/css/font-awesome.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('FE/css/elegant-icons.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('FE/css/jquery-ui.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('FE/css/magnific-popup.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('FE/css/owl.carousel.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('FE/css/slicknav.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('FE/css/style.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('FE/css/dropdown.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/jquery-ui.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/magnific-popup.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('FE/css/style.css') }}" type="text/css">
+    {{-- <link rel="stylesheet" href="{{ asset('FE/css/dropdown.css') }}" type="text/css"> --}}
+    <link rel="stylesheet" href="{{ asset('FE/css/sweetalert.css') }}" type="text/css">
 </head>
 
 <body>
@@ -43,7 +44,7 @@
                 </a></li>
         </ul>
         <div class="offcanvas__logo">
-            <a href="./index.html"><img src="{{ asset('FE/img/logo.png')}}" alt=""></a>
+            <a href="./index.html"><img src="{{ asset('FE/img/logo.png') }}" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__auth">
@@ -59,7 +60,7 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-2">
                     <div class="header__logo">
-                        <a href="{{ URL::to('/home') }}"><img src="{{ asset('FE/img/logo.png')}}" alt=""></a>
+                        <a href="{{ URL::to('/home') }}"><img src="{{ asset('FE/img/logo.png') }}" alt=""></a>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-7">
@@ -69,9 +70,10 @@
                             {{-- <li><a href="./shop.html">Shop</a></li> --}}
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    @foreach($category as $key => $cate)
-                                    <li><a href="{{ URL::to('/danh_muc_san_pham/'.$cate->category_id) }}">{{
-                                            $cate->category_name }}</a></li>
+                                    @foreach ($category as $key => $cate)
+                                        <li><a
+                                                href="{{ URL::to('/danh_muc_san_pham/' . $cate->category_id) }}">{{ $cate->category_name }}</a>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </li>
@@ -93,7 +95,7 @@
                             <li><a href="#"><span class="icon_heart_alt"></span>
                                     <div class="tip">2</div>
                                 </a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span>
+                            <li><a href="{{ URL::to('/show_cart_ajax') }}"><span class="icon_bag_alt"></span>
                                     <div class="tip">2</div>
                                 </a></li>
                         </ul>
@@ -114,7 +116,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-1.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-1.jpg') }}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -122,7 +124,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-2.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-2.jpg') }}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -130,7 +132,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-3.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-3.jpg') }}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -138,7 +140,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-4.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-4.jpg') }}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -146,7 +148,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-5.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-5.jpg') }}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -154,7 +156,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-6.jpg')}}">
+                    <div class="instagram__item set-bg" data-setbg="{{ asset('FE/img/instagram/insta-6.jpg') }}">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
                             <a href="#">@ ashion_shop</a>
@@ -173,16 +175,21 @@
                 <div class="col-lg-4 col-md-6 col-sm-7">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="./index.html"><img src="{{ asset('FE/img/logo.png')}}" alt=""></a>
+                            <a href="./index.html"><img src="{{ asset('FE/img/logo.png') }}" alt=""></a>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                             cilisis.</p>
                         <div class="footer__payment">
-                            <a href="#"><img src="{{ asset('FE/img/payment/payment-1.png')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('FE/img/payment/payment-2.png')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('FE/img/payment/payment-3.png')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('FE/img/payment/payment-4.png')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('FE/img/payment/payment-5.png')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('FE/img/payment/payment-1.png') }}"
+                                    alt=""></a>
+                            <a href="#"><img src="{{ asset('FE/img/payment/payment-2.png') }}"
+                                    alt=""></a>
+                            <a href="#"><img src="{{ asset('FE/img/payment/payment-3.png') }}"
+                                    alt=""></a>
+                            <a href="#"><img src="{{ asset('FE/img/payment/payment-4.png') }}"
+                                    alt=""></a>
+                            <a href="#"><img src="{{ asset('FE/img/payment/payment-5.png') }}"
+                                    alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -229,10 +236,12 @@
                 <div class="col-lg-12">
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     <div class="footer__copyright__text">
-                        <p>Copyright &copy; <script>
+                        <p>Copyright &copy;
+                            <script>
                                 document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart"
-                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            </script> All rights reserved | This template is made with <i
+                                class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                target="_blank">Colorlib</a>
                         </p>
                     </div>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -254,16 +263,57 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
-    <script src="{{ asset('FE/js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{ asset('FE/js/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('FE/js/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{ asset('FE/js/jquery-ui.min.js')}}"></script>
-    <script src="{{ asset('FE/js/mixitup.min.js')}}"></script>
-    <script src="{{ asset('FE/js/jquery.countdown.min.js')}}"></script>
-    <script src="{{ asset('FE/js/jquery.slicknav.js')}}"></script>
-    <script src="{{ asset('FE/js/owl.carousel.min.js')}}"></script>
-    <script src="{{ asset('FE/js/jquery.nicescroll.min.js')}}"></script>
-    <script src="{{ asset('FE/js/main.js')}}"></script>
+    <script src="{{ asset('FE/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('FE/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('FE/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('FE/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('FE/js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('FE/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('FE/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('FE/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('FE/js/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('FE/js/main.js') }}"></script>
+    <script src="{{ asset('FE/js/sweetalert.min.js') }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.add-to-cart').click(function(){
+                var id = $(this).data('id_product');
+                var cart_product_id = $('.cart_product_id_' + id).val();
+                var cart_product_name = $('.cart_product_name_' + id).val();
+                var cart_product_image = $('.cart_product_image_' + id).val();
+                var cart_product_price = $('.cart_product_price_' + id).val();
+                var cart_product_qty = $('.cart_product_qty_' + id).val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: '{{url('/add-cart-ajax')}}',
+                    method: 'POST',
+                    data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token},
+                    success:function(){
+
+                        alert('Cart added successfully')
+                        swal({
+                                title: "Đã thêm sản phẩm vào giỏ hàng",
+                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                                showCancelButton: true,
+                                cancelButtonText: "Xem tiếp",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Đi đến giỏ hàng",
+                                closeOnConfirm: false
+                            },
+                            function() {
+                                window.location.href = "{{url('/gio-hang')}}";
+                            });
+
+                    }
+
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
