@@ -23,12 +23,14 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên Sản Phẩm</label>
-                            <input type="text" name="product_name" class="form-control" id="exampleInputEmail1"
+                            <input type="text" data-validation="length" data-validation-length="min1"
+                            data-validation-error-msg="Tên Sản Phẩm Không Được Để Trống"
+                            name="product_name" class="form-control" id="exampleInputEmail1"
                                 placeholder="Tên danh mục">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Giá Sản Phẩm</label>
-                            <input type="text" name="product_price" class="form-control" id="exampleInputEmail1"
+                            <input  data-validation="number" data-validation-error-msg="Giá Sản Phẩm Không Được Để Trống" type="text" name="product_price" class="form-control" id="exampleInputEmail1"
                                 placeholder="Tên danh mục">
                         </div>
                         <div class="form-group">
@@ -49,7 +51,7 @@
                             <label for="exampleInputPassword1">Danh Mục Sản Phẩm</label>
                             <select name="product_cate" class="form-control input-sm m-bot15">
                                 @foreach($cate_product as $key => $cate)
-                                    
+
                                 <option value="{{ $cate->category_id }}">{{ $cate->category_name }}</option>
                                 @endforeach
 
@@ -59,7 +61,7 @@
                             <label for="exampleInputPassword1">Thương Hiệu Sản Phẩm</label>
                             <select name="product_brand" class="form-control input-sm m-bot15">
                                 @foreach($brand_product as $key => $brand)
-                                    
+
                                 <option value="{{ $brand->brand_id}}">{{ $brand->brand_name }}</option>
                                 @endforeach
                             </select>

@@ -25,6 +25,16 @@
     <link rel="stylesheet" href="{{ asset('FE/css/style.css') }}" type="text/css">
     {{-- <link rel="stylesheet" href="{{ asset('FE/css/dropdown.css') }}" type="text/css"> --}}
     <link rel="stylesheet" href="{{ asset('FE/css/sweetalert.css') }}" type="text/css">
+
+    <link href="{{ asset('FE/css/prettyPhoto.css') }}" rel="stylesheet">
+    <link href="{{ asset('FE/css/price-range.css') }}" rel="stylesheet">
+    <link href="{{ asset('FE/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('FE/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('FE/css/responsive.css') }}" rel="stylesheet">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
 <body>
@@ -64,8 +74,9 @@
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-7">
-                    <nav class="header__menu">
-                        <ul>
+                    <nav class="header__menu" style="display: flex">
+                        <ul style="display: flex;
+                        margin-right: 10pc;">
                             <li class="active"><a href="{{ URL::to('/home') }}">Home</a></li>
                             {{-- <li><a href="./shop.html">Shop</a></li> --}}
                             <li><a href="#">Pages</a>
@@ -79,25 +90,72 @@
                             </li>
                             {{-- <li><a href="./blog.html">Blog</a></li>
                             <li><a href="./contact.html">Contact</a></li> --}}
-                        </ul>
 
+                        </ul>
+                        <div class="input-group">
+                            <form action="{{ URL::to('/search') }}" method="POST" style="display:flex">
+                                {{ csrf_field() }}
+                                <input style="width: 12pc;" name="keywords_submit"
+                                    class="form-control mr-3 border-end-0 border rounded-pill" type="search"
+                                    id="search-input" placeholder="Search ...">
+                                <span class="input-group-append">
+                                    <button
+                                        class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
+                                        type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </form>
+                        </div>
 
                     </nav>
+
                 </div>
                 <div class="col-lg-3">
                     <div class="header__right">
                         <div class="header__right__auth">
-                            <a href="{{ URL::to('/login') }}">Login</a>
-                            <a href="{{ URL::to('/register') }}">Register</a>
+                            <?php
+                                $customer_id = Session::get('customer_id');
+                                if ($customer_id != NULL) {
+                                ?>
+                            <a href="{{ URL::to('/logout_checkout') }}">Đăng Xuất</a>
+                            <?php
+                            }else {
+                                ?>
+                            <a href="{{ URL::to('/login_checkout') }}">Đăng Nhập</a>
+                            <?php
+                            }
+                            ?>
+
+                        </div>
+                        <div class="header__right__auth">
+                            <?php
+                                $customer_id = Session::get('customer_id');
+                                $shipping_id = Session::get('shipping_id');
+                                if ($customer_id != NULL && $shipping_id == NULL) {
+                                ?>
+                            <a href="{{ URL::to('/show_checkout') }}">Thanh Toán </a>
+                            <?php
+                            }elseif($customer_id != NULL && $shipping_id != NULL) {
+                            ?>
+                            <a href="{{ URL::to('/payment') }}">Thanh Toán </a>
+                            <?php
+                            }else {
+                            ?>
+                            <a href="{{ URL::to('/login_checkout') }}">Thanh Toán </a>
+                            <?php
+                            }
+                            ?>
                         </div>
                         <ul class="header__right__widget">
-                            <li><span class="icon_search search-switch"></span></li>
-                            <li><a href="#"><span class="icon_heart_alt"></span>
-                                    <div class="tip">2</div>
-                                </a></li>
-                            <li><a href="{{ URL::to('/show_cart_ajax') }}"><span class="icon_bag_alt"></span>
-                                    <div class="tip">2</div>
-                                </a></li>
+                            <div class="header__right">
+
+                                <li><a href="#"><span class="icon_heart_alt"></span>
+                                        <div class="tip">2</div>
+                                    </a></li>
+                                <li><a href="{{ URL::to('/show_cart') }}"><span class="icon_bag_alt"></span>
+                                        <div class="tip">2</div>
+                                    </a></li>
                         </ul>
                     </div>
                 </div>
@@ -278,8 +336,8 @@
 
 
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.add-to-cart').click(function(){
+        $(document).ready(function() {
+            $('.add-to-cart').click(function() {
                 var id = $(this).data('id_product');
                 var cart_product_id = $('.cart_product_id_' + id).val();
                 var cart_product_name = $('.cart_product_name_' + id).val();
@@ -288,10 +346,17 @@
                 var cart_product_qty = $('.cart_product_qty_' + id).val();
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
-                    url: '{{url('/add-cart-ajax')}}',
+                    url: '{{ url('/add-cart-ajax') }}',
                     method: 'POST',
-                    data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token},
-                    success:function(){
+                    data: {
+                        cart_product_id: cart_product_id,
+                        cart_product_name: cart_product_name,
+                        cart_product_image: cart_product_image,
+                        cart_product_price: cart_product_price,
+                        cart_product_qty: cart_product_qty,
+                        _token: _token
+                    },
+                    success: function() {
 
                         alert('Cart added successfully')
                         swal({
@@ -304,7 +369,7 @@
                                 closeOnConfirm: false
                             },
                             function() {
-                                window.location.href = "{{url('/gio-hang')}}";
+                                window.location.href = "{{ url('/gio-hang') }}";
                             });
 
                     }

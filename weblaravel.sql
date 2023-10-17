@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 10, 2023 lúc 01:47 PM
+-- Thời gian đã tạo: Th10 17, 2023 lúc 11:06 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.0.28
+-- Phiên bản PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,7 +61,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2023_10_08_074629_create_tbl_admin_table', 1),
 (6, '2023_10_08_074849_create_tbl_category_product', 1),
 (7, '2023_10_08_074916_create_tbl_product', 1),
-(8, '2023_10_08_075000_create_tbl_brand_product', 1);
+(8, '2023_10_08_075000_create_tbl_brand_product', 1),
+(9, '2023_10_16_032222_tbl_customer', 2),
+(10, '2023_10_16_041449_tbl_shipping', 3),
+(11, '2023_10_16_081729_tbl_payment', 4),
+(12, '2023_10_16_081956_tbl_oder', 4),
+(13, '2023_10_16_082019_tbl_oder_detail', 4);
 
 -- --------------------------------------------------------
 
@@ -175,6 +180,99 @@ INSERT INTO `tbl_category_product` (`category_id`, `category_name`, `category_de
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `tbl_customers`
+--
+
+CREATE TABLE `tbl_customers` (
+  `customer_id` int(10) UNSIGNED NOT NULL,
+  `customer_name` varchar(255) NOT NULL,
+  `customer_email` varchar(255) NOT NULL,
+  `customer_password` varchar(255) NOT NULL,
+  `customer_phone` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_customers`
+--
+
+INSERT INTO `tbl_customers` (`customer_id`, `customer_name`, `customer_email`, `customer_password`, `customer_phone`, `created_at`, `updated_at`) VALUES
+(7, 'huy', 'dqh28092001@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b', '1234', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_oder`
+--
+
+CREATE TABLE `tbl_oder` (
+  `oder_id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `shipping_id` int(11) NOT NULL,
+  `payment_id` int(11) NOT NULL,
+  `oder_total` varchar(50) NOT NULL,
+  `oder_status` varchar(50) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_oder`
+--
+
+INSERT INTO `tbl_oder` (`oder_id`, `customer_id`, `shipping_id`, `payment_id`, `oder_total`, `oder_status`, `created_at`, `updated_at`) VALUES
+(24, 7, 10, 24, '544,000', 'Đang chờ xử lý', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_oder_detail`
+--
+
+CREATE TABLE `tbl_oder_detail` (
+  `oder_detail_id` bigint(20) UNSIGNED NOT NULL,
+  `oder_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_price` varchar(50) NOT NULL,
+  `product_sales_quantity` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_oder_detail`
+--
+
+INSERT INTO `tbl_oder_detail` (`oder_detail_id`, `oder_id`, `product_id`, `product_name`, `product_price`, `product_sales_quantity`, `created_at`, `updated_at`) VALUES
+(39, 24, 7, 'Váy Đi Biển', '122000', 2, NULL, NULL),
+(40, 24, 8, 'Áo Khoác', '300000', 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_payment`
+--
+
+CREATE TABLE `tbl_payment` (
+  `payment_id` bigint(20) UNSIGNED NOT NULL,
+  `payment_method` varchar(255) NOT NULL,
+  `payment_status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_payment`
+--
+
+INSERT INTO `tbl_payment` (`payment_id`, `payment_method`, `payment_status`, `created_at`, `updated_at`) VALUES
+(24, '2', 'Đang chờ xử lý', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `tbl_product`
 --
 
@@ -205,6 +303,39 @@ INSERT INTO `tbl_product` (`product_id`, `product_name`, `category_id`, `brand_i
 (6, 'Giày Đen', 5, 4, 'Mua online giày đen chất lượng, mới nhất, giảm tới 50% tại Shopee Việt Nam. Khuyến mãi tháng 10. Miễn phí vận chuyển. Mua ngay!', 'Mua online giày đen chất lượng, mới nhất, giảm tới 50% tại Shopee Việt Nam. Khuyến mãi tháng 10. Miễn phí vận chuyển. Mua ngay!', '300000', '650039d532026_cac-thuong-hieu-thoi-trang-noi-tieng-5_88.png', 0, NULL, NULL),
 (7, 'Váy Đi Biển', 1, 6, 'Mua đầm đi biển giao tận nơi và tham khảo thêm nhiều sản phẩm khác. Miễn phí vận chuyển toàn quốc cho mọi đơn hàng . Đổi trả dễ dàng. Thanh toán bảo mật.\"\"\"\"\"', 'Mua đầm đi biển giao tận nơi và tham khảo thêm nhiều sản phẩm khác. Miễn phí vận chuyển toàn quốc cho mọi đơn hàng . Đổi trả dễ dàng. Thanh toán bảo mật.\"\"\"\"\"', '122000', 'images_52.jfif', 0, NULL, NULL),
 (8, 'Áo Khoác', 7, 5, 'Mua sắm ngay áo khoác cho nam với nhiều màu sắc và kiểu dáng khác nhau từ những công nghệ tiên như chống UV, Siêu nhẹ và hơn thế nữa!', 'Mua sắm ngay áo khoác cho nam với nhiều màu sắc và kiểu dáng khác nhau từ những công nghệ tiên như chống UV, Siêu nhẹ và hơn thế nữa!', '300000', '65003e38cf0a7_pc-ao-khoac-du-nam-truot-nuoc-mau-xanh-da-quang-large-1669600982-6771_29.jpg', 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_shipping`
+--
+
+CREATE TABLE `tbl_shipping` (
+  `shipping_id` int(10) UNSIGNED NOT NULL,
+  `shipping_name` varchar(255) NOT NULL,
+  `shipping_address` varchar(255) NOT NULL,
+  `shipping_phone` varchar(255) NOT NULL,
+  `shipping_email` varchar(255) NOT NULL,
+  `shipping_note` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_shipping`
+--
+
+INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_address`, `shipping_phone`, `shipping_email`, `shipping_note`, `created_at`, `updated_at`) VALUES
+(1, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'awfsadf', NULL, NULL),
+(2, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'dsasd', NULL, NULL),
+(3, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'đâsd', NULL, NULL),
+(4, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'sÂs', NULL, NULL),
+(5, 'huydang', 'trungnuwvuon', '1234567890rưe', 'dqh28092001@gmail.com', 'ử', NULL, NULL),
+(6, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'dczcdzdsd', NULL, NULL),
+(7, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'adasd', NULL, NULL),
+(8, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'ádasdasd', NULL, NULL),
+(9, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'ádasd', NULL, NULL),
+(10, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'saddsas', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -273,10 +404,40 @@ ALTER TABLE `tbl_category_product`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Chỉ mục cho bảng `tbl_customers`
+--
+ALTER TABLE `tbl_customers`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
+-- Chỉ mục cho bảng `tbl_oder`
+--
+ALTER TABLE `tbl_oder`
+  ADD PRIMARY KEY (`oder_id`);
+
+--
+-- Chỉ mục cho bảng `tbl_oder_detail`
+--
+ALTER TABLE `tbl_oder_detail`
+  ADD PRIMARY KEY (`oder_detail_id`);
+
+--
+-- Chỉ mục cho bảng `tbl_payment`
+--
+ALTER TABLE `tbl_payment`
+  ADD PRIMARY KEY (`payment_id`);
+
+--
 -- Chỉ mục cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
   ADD PRIMARY KEY (`product_id`);
+
+--
+-- Chỉ mục cho bảng `tbl_shipping`
+--
+ALTER TABLE `tbl_shipping`
+  ADD PRIMARY KEY (`shipping_id`);
 
 --
 -- Chỉ mục cho bảng `users`
@@ -298,7 +459,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -325,10 +486,40 @@ ALTER TABLE `tbl_category_product`
   MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT cho bảng `tbl_customers`
+--
+ALTER TABLE `tbl_customers`
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_oder`
+--
+ALTER TABLE `tbl_oder`
+  MODIFY `oder_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_oder_detail`
+--
+ALTER TABLE `tbl_oder_detail`
+  MODIFY `oder_detail_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_payment`
+--
+ALTER TABLE `tbl_payment`
+  MODIFY `payment_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
 -- AUTO_INCREMENT cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
   MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_shipping`
+--
+ALTER TABLE `tbl_shipping`
+  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `users`

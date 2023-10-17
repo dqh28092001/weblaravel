@@ -74,7 +74,7 @@
                                             </td>
 
                                             <td class="cart__total product-total">
-                                                {{--  Biến khóa {{ $key }}dự kiến ​​sẽ được thay thế bằng mã định danh duy nhất cho từng sản phẩm, 
+                                                {{--  Biến khóa {{ $key }}dự kiến ​​sẽ được thay thế bằng mã định danh duy nhất cho từng sản phẩm,
                                 cho phép JavaScript xác định và cập nhật tổng giá trị của sản phẩm tương ứng --}}
                                                 <span class="product-total-value-{{ $key }}">
                                                     {{ number_format($value_content->price * $value_content->qty, 0, ',', ',') }}
@@ -104,12 +104,27 @@
                         <ul>
                             <div id="cart-total">
                                 Subtotal : <span
-                                    style="font-weight:900 ; color:#ca1515 ">{{ number_format(Cart::subtotal(), 0, ',', ',') }}
-                                    VNĐ</span>
+                                    style="font-weight:900 ; color:#ca1515 ">{{ number_format(Cart::subtotal(), 0, ',', ',') }}VNĐ</span>
                             </div>
 
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <a href="{{ URL::to('/checkout') }}" class="primary-btn">Proceed to checkout</a>
+                            <?php
+                                $customer_id = Session::get('customer_id');
+                                if ($customer_id != NULL) {
+                                ?>
+                            <a href="{{ URL::to('/show_checkout') }}" class="primary-btn" style="margin-top: 1pc">Thanh
+                                Toán</a>
+
+                            <?php
+                            }else {
+                            ?>
+                            <a href="{{ URL::to('/login_checkout') }}" class="primary-btn" style="margin-top: 1pc">Thanh
+                                Toán</a>
+
+                            <?php
+                            }
+                            ?>
                     </div>
                 </div>
             </div>
@@ -127,11 +142,12 @@
             $('.plus').on('click', function() {
                 // lấy giá trị của thuộc tính data-rowid từ nút "plus" được nhấn,
                 var rowId = $(this).data('rowid');
-                var quantityInput = $(`.quantity[data-rowid="${rowId}"]`);//data-rowid để lưu trữ mã định danh duy nhất cho sản phẩm, giúp xác định sản phẩm cần cập nhật.
+                var quantityInput = $(
+                `.quantity[data-rowid="${rowId}"]`); //data-rowid để lưu trữ mã định danh duy nhất cho sản phẩm, giúp xác định sản phẩm cần cập nhật.
                 var currentQty = parseInt(quantityInput.val());
-                quantityInput.val(currentQty + 1); 
+                quantityInput.val(currentQty + 1);
                 // rowId, giá trị định danh của sản phẩm,
-                updateCart(rowId, currentQty + 1); 
+                updateCart(rowId, currentQty + 1);
             });
 
             // Xử lý khi nhấn nút -
@@ -140,8 +156,8 @@
                 var quantityInput = $(`.quantity[data-rowid="${rowId}"]`);
                 var currentQty = parseInt(quantityInput.val());
                 if (currentQty > 1) { // Đảm bảo số lượng không âm và ít nhất là 1
-                    quantityInput.val(currentQty - 1); 
-                    updateCart(rowId, currentQty - 1); 
+                    quantityInput.val(currentQty - 1);
+                    updateCart(rowId, currentQty - 1);
                 } else {
                     alert('Số lượng sản phẩm phải ít nhất là 1.');
                 }
@@ -157,8 +173,10 @@
                 } else {
                     alert('Số lượng sản phẩm phải ít nhất là 1.');
                     // Khôi phục lại số lượng sản phẩm về 1 hoặc giá trị trước khi thay đổi không hợp lệ.
-                    var previousQty = $(this).attr('value'); //attr() đặt hoặc trả về các thuộc tính và giá trị của các phần tử được chọn.
-                    $(this).val(previousQty); //đặt giá trị của trường nhập số lượng trở lại giá trị trước đó
+                    var previousQty = $(this).attr(
+                    'value'); //attr() đặt hoặc trả về các thuộc tính và giá trị của các phần tử được chọn.
+                    $(this).val(
+                    previousQty); //đặt giá trị của trường nhập số lượng trở lại giá trị trước đó
                 }
             });
 
@@ -167,7 +185,7 @@
                     type: 'POST',
                     url: '/update_cart',
                     data: {
-                        _token: '{{ csrf_token() }}', //token, đây là mã CSRF token để đảm bảo tính bảo mật,  
+                        _token: '{{ csrf_token() }}', //token, đây là mã CSRF token để đảm bảo tính bảo mật,
                         rowId: rowId, //rowId để xác định sản phẩm cần cập nhật,
                         newQty: newQty //newQty để cập nhật số lượng sản phẩm.
                     },

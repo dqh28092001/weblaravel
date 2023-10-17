@@ -1,3 +1,4 @@
+composer update --ignore-platform-reqs
+composer require league/flysystem-local league/mime-type-detection
 php artisan key:generate
 cp .env.example .env
-composer install
