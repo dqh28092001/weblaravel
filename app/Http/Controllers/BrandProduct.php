@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB; // Correct import for DB
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Session; // Correct import for Session
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Hash; // Correct import for Hash
+use Illuminate\Support\Facades\Hash;
 class BrandProduct extends Controller
 {
-    // ngăn chặn người dùng chưa đăng nhập mà vô được bên trong 
+    // ngăn chặn người dùng chưa đăng nhập mà vô được bên trong
     public function AuthLogin()
     {
         $admin_id = Session::get('admin_id');
@@ -37,12 +38,21 @@ class BrandProduct extends Controller
     public function save_brand_product(Request $request)
     {
         $this->AuthLogin();
-        $data = array();
-        $data['brand_name'] = $request->brand_product_name;
-        $data['brand_desc'] = $request->brand_product_desc;
-        $data['brand_status'] = $request->brand_product_status;
+        $data = $request->all();
+        $brand = new Brand();
+        $brand->brand_name=$data['brand_product_name'];
+        $brand->brand_slug=$data['brand_slug'];
+        $brand->brand_desc=$data['brand_product_desc'];
+        $brand->brand_status=$data['brand_product_status'];
+        $brand->save();
 
-        DB::table('tbl_brand_product')->insert($data);
+        // $data = array();
+        // $data['brand_name'] = $request->brand_product_name;
+        // $data['brand_desc'] = $request->brand_product_desc;
+        // $data['brand_status'] = $request->brand_product_status;
+        // DB::table('tbl_brand_product')->insert($data);
+
+
         Session::put('message', 'Thêm Thương Hiệu Sản Phẩm Thành Công');
         return Redirect::to('/add_brand_product');
     }

@@ -27,6 +27,11 @@
                                 placeholder="Tên danh mục">
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Slug</label>
+                            <input type="text" name="brand_slug" class="form-control" id="exampleInputEmail1"
+                                placeholder="Slug">
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputPassword1">Mô Tả Thương Hiệu</label>
                             <textarea style="resize:none" rows="8" class="form-control" id="exampleInputPassword1"
                                 name="brand_product_desc" placeholder="Mô tả danh mục"></textarea>
