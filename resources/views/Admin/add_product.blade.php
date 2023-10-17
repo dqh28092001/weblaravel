@@ -24,13 +24,13 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên Sản Phẩm</label>
                             <input type="text" data-validation="length" data-validation-length="min1"
-                            data-validation-error-msg="Tên Sản Phẩm Không Được Để Trống"
+                            data-validation-error-msg="Vui Lòng Nhập Tên Sản Phẩm "
                             name="product_name" class="form-control" id="exampleInputEmail1"
                                 placeholder="Tên danh mục">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Giá Sản Phẩm</label>
-                            <input  data-validation="number" data-validation-error-msg="Giá Sản Phẩm Không Được Để Trống" type="text" name="product_price" class="form-control" id="exampleInputEmail1"
+                            <input  data-validation="number" data-validation-error-msg="Vui Lòng Nhập Giá Sản Phẩm " type="text" name="product_price" class="form-control" id="exampleInputEmail1"
                                 placeholder="Tên danh mục">
                         </div>
                         <div class="form-group">

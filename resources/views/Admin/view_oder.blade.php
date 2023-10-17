@@ -13,12 +13,12 @@
                     Session::put('message' . null);
                 }
                 ?>
-                <table class="table table-striped b-t b-light">
+                <table class="table table-striped b-t b-light" style="text-align: center">
                     <thead>
-                        <tr>
-                            <th>Tên Khách Hàng</th>
-                            <th>Email</th>
-                            <th>Số Điện Thoại</th>
+                        <tr >
+                            <th  style="text-align: center">Tên Khách Hàng</th>
+                            <th  style="text-align: center">Email</th>
+                            <th  style="text-align: center">Số Điện Thoại</th>
                             <th style="width:30px;"></th>
                         </tr>
                     </thead>
@@ -51,12 +51,12 @@
                     Session::put('message' . null);
                 }
                 ?>
-                <table class="table table-striped b-t b-light">
+                <table class="table table-striped b-t b-light"  style="text-align: center">
                     <thead>
                         <tr>
-                            <th>Tên Người Nhận Hàng</th>
-                            <th>Địa Chỉ</th>
-                            <th>Số Điện Thoại</th>
+                            <th  style="text-align: center">Tên Người Nhận Hàng</th>
+                            <th  style="text-align: center">Địa Chỉ</th>
+                            <th  style="text-align: center">Số Điện Thoại</th>
                             <th style="width:30px;"></th>
                         </tr>
                     </thead>
@@ -89,13 +89,13 @@
                     Session::put('message' . null);
                 }
                 ?>
-                <table class="table table-striped b-t b-light">
+                <table class="table table-striped b-t b-light"  style="text-align: center">
                     <thead>
                         <tr>
-                            <th>Tên Sản Phẩm</th>
-                            <th>Số Lượng</th>
-                            <th>Giá </th>
-                            <th>Thành Tiền</th>
+                            <th  style="text-align: center">Tên Sản Phẩm</th>
+                            <th  style="text-align: center">Số Lượng</th>
+                            <th  style="text-align: center">Giá </th>
+                            <th  style="text-align: center">Thành Tiền</th>
                             <th style="width:30px;"></th>
                         </tr>
                     </thead>
