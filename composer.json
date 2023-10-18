@@ -11,7 +11,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "league/flysystem-local": "^3.16",
-        "league/mime-type-detection": "^1.13",
+        "league/mime-type-detection": "^1.14",
         "mindscms/laravelshoppingcart": "^2.1"
     },
     "require-dev": {

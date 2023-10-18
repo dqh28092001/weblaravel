@@ -29,21 +29,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
+                                    {{-- @php
                                         echo '<pre>';
                                         print_r(Session::get('cart'));
                                         echo '</pre>';
-                                    @endphp
+                                    @endphp --}}
 
+                                    @php
+                                    $total = 0;
+                                @endphp
+                                            @foreach (Session::get('cart') as $key => $cart)
+                                            @php
+                                                $subtotal = $cart['product_price']*$cart['product_qty'];
+                                                $total += $subtotal;
+                                            @endphp
 
-
-                                    @foreach (Session::get('cart') as $key => $cart)
-                                    
                                         <tr>
                                             <td class="cart__product__item">
-                                                <img src="" width="100" height="100" alt="">
+                                                <img src="{{ asset('public/upload/product/'.$cart['product_image']) }}" width="100" height="100" alt="{{ $cart['product_name'] }}">
                                                 <div class="cart__product__item__title">
-                                                    <h6></h6>
+                                                    <h6>{{ $cart['product_name'] }}</h6>
                                                     <div class="rating">
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
@@ -53,7 +58,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="cart__price product-price">
+                                            <td class="cart__price product-price">{{ number_format($cart['product_price'],0,',',',' )}}VNĐ
                                             </td>
                                             </td>
                                             <td class="cart__quantity">
@@ -62,7 +67,7 @@
                                                     <span class="qty-btn minus" style="margin-top: 4px;"
                                                         data-rowid="">-</span>
                                                     <div class="qty-display">
-                                                        <input type="text" value="" class="quantity"
+                                                        <input type="text" value="{{ $cart['product_qty'] }}" class="quantity"
                                                             name="cart_qty" data-rowid="">
                                                     </div>
                                                     <span class="qty-btn plus" style="margin-top: 4px;"
@@ -72,7 +77,7 @@
 
                                             <td class="cart__total product-total">
                                                 <span class="product-total-value">
-                                                    VNĐ
+                                                    {{ number_format($subtotal,0,',',',' )}}
                                                 </span>
                                             </td>
 
@@ -96,7 +101,7 @@
                         <h6>Cart total</h6>
                         <ul>
                             <div id="cart-total">
-                                Subtotal : <span style="font-weight:900 ; color:#ca1515 "> VNĐ</span>
+                                Subtotal : <span style="font-weight:900 ; color:#ca1515 "> {{ number_format($total,0,',',',' )}}VNĐ</span>
                             </div>
 
                         </ul>
