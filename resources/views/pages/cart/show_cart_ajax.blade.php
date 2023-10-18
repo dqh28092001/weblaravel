@@ -16,7 +16,19 @@
         <section class="shop-cart spad">
             <div class="container">
                 <div class="row">
+                    @if (session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                        @elseif (session()->has('error'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('error') }}
+                        </div>
+                    @endif
+
                     <div class="col-lg-12">
+                        <form action="{{ url('/update_cart_ajax') }}" method="POST" style="display: flex">
+
                         <div class="shop__cart__table">
                             <table>
                                 <thead>
@@ -62,7 +74,6 @@
                                             </td>
                                             </td>
                                             <td class="cart__quantity">
-                                                <form action="" method="POST" style="display: flex">
 
                                                     <span class="qty-btn minus" style="margin-top: 4px;"
                                                         data-rowid="">-</span>
@@ -72,7 +83,7 @@
                                                     </div>
                                                     <span class="qty-btn plus" style="margin-top: 4px;"
                                                         data-rowid="">+</span>
-                                                </form>
+
                                             </td>
 
                                             <td class="cart__total product-total">
@@ -81,13 +92,14 @@
                                                 </span>
                                             </td>
 
-                                            <td class="cart__close"><a href=""><span class="icon_close"></span></a>
+                                            <td class="cart__close"><a href="{{ url('/delete_cart_ajax/'.$cart['session_id']) }}"><span class="icon_close"></span></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
+                    </form>
                     </div>
                 </div>
                 <div class="row">

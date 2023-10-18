@@ -102,6 +102,8 @@ Route::get('/view_oder/{oderId}', [CheckoutController::class,'view_oder']);
 // add to cart ajax
 Route::post('/add-cart-ajax',[CartController::class,'add_cart_ajax']);
 Route::get('/show_cart_ajax', [CartController::class,'show_cart_ajax']);
+Route::get('/delete_cart_ajax/{session_id}', [CartController::class,'delete_cart_ajax']);
+Route::post('/update_cart_ajax', [CartController::class,'update_cart_ajax']);
 
 
 

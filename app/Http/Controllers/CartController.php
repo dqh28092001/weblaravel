@@ -82,7 +82,7 @@ class CartController extends Controller
     {
         //lấy toàn bộ dữ liệu
         $data = $request->all();
-        // session_id mới cho sản phẩm được thêm vào giỏ hàng. 
+        // session_id mới cho sản phẩm được thêm vào giỏ hàng.
         $session_id = substr(md5(microtime()), rand(0, 26), 5); // để lấy thời gian hiện tại với độ chính xác micro giây và  mã hóa nó bằng hàm md5()
         $cart = Session::get('cart');//Lấy giỏ hàng hiện tại từ phiên (session)
 
@@ -142,5 +142,23 @@ class CartController extends Controller
 
         return view('pages.cart.show_cart_ajax')->with('category', $cate_product)->with('brand', $brand_product)
         ->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
+    }
+
+    public function delete_cart_ajax($session_id)
+    {
+        // để xóa một mặt hàng khỏi giỏ hàng.
+        $cart = Session::get('cart');
+        if($cart == true){
+            foreach($cart as $key => $val){
+                if($val['session_id']==$session_id){
+                    unset($cart[$key]);
+                }
+            }
+            Session::put('cart',$cart);
+            return redirect()->back()->with('message','Xóa Sản Phẩm Thành Công');
+        }else{
+            return redirect()->back()->with('message','Xóa Sản Phẩm Thất Bại');
+        }
+
     }
 }
