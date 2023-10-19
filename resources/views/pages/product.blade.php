@@ -104,8 +104,9 @@
                                         class="arrow_expand"></span></a></li>
                             <li><a href="{{ URL::to('/detail_product/'.$product->product_id) }}"><span class="icon_heart_alt"></span></a></li>
                             <li>
-                                <button type="button" class="btn btn-default add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart"><span class="icon_bag_alt"></span></button>
-                               
+                                <button type="button" class="btn btn-default add-to-cart" data-id_product="{{$product->product_id}}"
+                                    name="add-to-cart"><span class="icon_bag_alt"></span></button>
+
                             </li>
                         </ul>
                     </div>
@@ -118,8 +119,8 @@
             </div>
             @endforeach
         </div>
-        
-       
+
+
 
 </section>
 <!-- Product Section End -->

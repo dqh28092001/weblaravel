@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash; // Correct import for Hash
 class ProductController extends Controller
 {
-    // ngăn chặn người dùng chưa đăng nhập mà vô được bên trong 
+    // ngăn chặn người dùng chưa đăng nhập mà vô được bên trong
     public function AuthLogin(){
         $admin_id = Session::get('admin_id');
         if($admin_id){
@@ -45,6 +45,7 @@ class ProductController extends Controller
         $this->AuthLogin();
         $data = array();
         $data['product_name'] = $request->product_name;
+        $data['product_quantity'] = $request->product_quantity;
         $data['product_price'] = $request->product_price;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
@@ -57,7 +58,7 @@ class ProductController extends Controller
 
         if ($get_image) {
             $get_name_image = $get_image->getClientOriginalName();
-            //  chia chuỗi thành một mảng bằng cách sử dụng dấu chấm (.) làm dấu phân cách .. 
+            //  chia chuỗi thành một mảng bằng cách sử dụng dấu chấm (.) làm dấu phân cách ..
             // vd : example.jpg" thành "example" và "jpg".
             $name_image = current(explode('.',$get_name_image));
             //getClientOriginalExtension nó sẽ lấy cái đuôi mở rộng , vd: jpg,png....
@@ -112,6 +113,7 @@ class ProductController extends Controller
         $this->AuthLogin();
         $data = array();
         $data['product_name'] = $request->product_name;
+        $data['product_quantity'] = $request->product_quantity;
         $data['product_price'] = $request->product_price;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
@@ -121,9 +123,9 @@ class ProductController extends Controller
 
         $get_image = $request->file('product_image');
 
-        if ($get_image) {   
+        if ($get_image) {
             $get_name_image = $get_image->getClientOriginalName();
-            //  chia chuỗi thành một mảng bằng cách sử dụng dấu chấm (.) làm dấu phân cách .. 
+            //  chia chuỗi thành một mảng bằng cách sử dụng dấu chấm (.) làm dấu phân cách ..
             // vd : example.jpg" thành "example" và "jpg".
             $name_image = current(explode('.',$get_name_image));
             //getClientOriginalExtension nó sẽ lấy cái đuôi mở rộng , vd: jpg,png....

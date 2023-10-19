@@ -54,7 +54,7 @@ class BrandProduct extends Controller
 
 
         Session::put('message', 'Thêm Thương Hiệu Sản Phẩm Thành Công');
-        return Redirect::to('/add_brand_product');
+        return Redirect::to('/all_brand_product');
     }
 
     // Ẩn Hiện sản phẩm trông all_products

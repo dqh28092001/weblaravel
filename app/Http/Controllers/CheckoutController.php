@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Oder;
+use App\Models\OderDetail;
+use App\Models\Shipping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; // Correct import for DB
 use App\Http\Requests;
@@ -12,15 +15,15 @@ use Illuminate\Support\Facades\Hash; // Correct import for Hash
 
 class CheckoutController extends Controller
 {
-     // ngăn chặn người dùng chưa đăng nhập mà vô được bên trong
-     public function AuthLogin(){
+    // ngăn chặn người dùng chưa đăng nhập mà vô được bên trong
+    public function AuthLogin()
+    {
         $admin_id = Session::get('admin_id');
-        if($admin_id){
+        if ($admin_id) {
             return Redirect::to('dashboard');
-        }else{
+        } else {
             // gửi tất cả data bằng hàm send() thay vì phải ghi lại từng biến chứa dữ liệu
             return Redirect::to('admin_login')->send();
-
         }
     }
 
@@ -155,17 +158,19 @@ class CheckoutController extends Controller
     }
 
     // manage-oder admin
-    public function manage_oder(){
+    public function manage_oder()
+    {
         $this->AuthLogin();
-        $all_oder= DB::table('tbl_oder')
-        ->join('tbl_customers','tbl_oder.customer_id','=','tbl_customers.customer_id')
-        ->select('tbl_oder.*','tbl_customers.customer_name')
-        ->orderBy('tbl_oder.oder_id','desc')->get();
+        $all_oder = DB::table('tbl_oder')
+            ->join('tbl_customers', 'tbl_oder.customer_id', '=', 'tbl_customers.customer_id')
+            ->select('tbl_oder.*', 'tbl_customers.customer_name')
+            ->orderBy('tbl_oder.oder_id', 'desc')->get();
         $manage_oder = view('/Admin.manage_oder')->with('all_oder', $all_oder);
         return view('/Admin.admin_header')->with('admin.manage_oder', $manage_oder);
     }
 
-    public function view_oder($oder_id){
+    public function view_oder($oder_id)
+    {
         $this->AuthLogin();
         $oder_by_id = DB::table('tbl_oder')
             ->join('tbl_customers', 'tbl_oder.customer_id', '=', 'tbl_customers.customer_id')
@@ -178,4 +183,47 @@ class CheckoutController extends Controller
         return view('Admin.admin_header')->with('admin_view_oder', $manage_oder_by_id);
     }
 
+
+    // lưu trữ thôgn tin khách hàng khi chọn thanh toán tiền mặt....
+    public function confirm_order(Request $request)
+    {
+        $data = $request->all();
+
+        $shipping = new Shipping();
+        $shipping->shipping_email = $data['shipping_email'];
+        $shipping->shipping_name = $data['shipping_name'];
+        $shipping->shipping_address = $data['shipping_address'];
+        $shipping->shipping_phone = $data['shipping_phone'];
+        $shipping->shipping_note = $data['shipping_note'];
+        $shipping->shipping_method = $data['shipping_method'];
+        $shipping->save();
+        $shipping_id = $shipping->shipping_id;
+
+
+        $checkout_code = substr(md5(microtime()), rand(0, 26), 5);
+
+        $oder = new Oder();
+        $oder->customer_id = Session::get('customer_id');
+        $oder->shipping_id = $shipping_id;
+        $oder->oder_status = 1;
+        $oder->oder_code = $checkout_code;
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $oder->created_at = now();
+        $oder->save();
+
+
+        if (Session::get('cart')) {
+            foreach (Session::get('cart') as $key => $cart) {
+                $oder_detail = new OderDetail();
+                $oder_detail->oder_code = $checkout_code;
+                $oder_detail->product_id = $cart['product_id'];
+                $oder_detail->product_name = $cart['product_name'];
+                $oder_detail->product_price = $cart['product_price'];
+                $oder_detail->product_sales_quantity = $cart['product_qty'];
+                $oder_detail->save();
+            }
+        }
+
+        Session::forget('cart');
+    }
 }

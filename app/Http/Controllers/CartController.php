@@ -116,7 +116,7 @@ class CartController extends Controller
                 Session::put('cart', $cart);//Cập nhật giỏ hàng trong phiên với dữ liệu mới
             }
         } else {
-
+            // nếu trong gio hang chưa có  sản phẩm nào thì thêm mới vào giỏ hàng
             $cart[] = array(
                 'session_id' => $session_id,
                 'product_name' => $data['cart_product_name'],
@@ -141,7 +141,7 @@ class CartController extends Controller
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '0')->orderBy('brand_id', 'desc')->get();
 
         return view('pages.cart.show_cart_ajax')->with('category', $cate_product)->with('brand', $brand_product)
-        ->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
+            ->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
     }
 
     public function delete_cart_ajax($session_id)

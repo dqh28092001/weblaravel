@@ -29,6 +29,13 @@
                                 placeholder="Tên danh mục">
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Số Lượng Sản Phẩm</label>
+                            <input type="text" data-validation="number"
+                            data-validation-error-msg="Vui Lòng Nhập Số Lượng Sản Phẩm " type="text"
+                            name="product_quantity" class="form-control" id="exampleInputEmail1"
+                                placeholder="Điền Số Lượng Sản Phẩm">
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Giá Sản Phẩm</label>
                             <input  data-validation="number" data-validation-error-msg="Vui Lòng Nhập Giá Sản Phẩm " type="text" name="product_price" class="form-control" id="exampleInputEmail1"
                                 placeholder="Tên danh mục">

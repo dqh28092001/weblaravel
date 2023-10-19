@@ -7,6 +7,8 @@ use App\Http\Controllers\CategoryProduct;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginAndRegisterController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\OderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class,'index']);
 Route::get('/home', [HomeController::class,'index']);
 Route::post('/search', [HomeController::class,'search']);
+
+// Send Mail
+Route::get('/send_mail', [MailController::class,'send_mail']);
 
 // Danh mục sản phẩm trang chủ
 Route::get('/danh_muc_san_pham/{category_id}', [CategoryProduct::class,'show_category_home']);
@@ -93,10 +98,15 @@ Route::post('/login_customer', [CheckoutController::class,'login_customer']);
 Route::post('/oder_place', [CheckoutController::class,'oder_place']);
 Route::post('/save_checkout_customer', [CheckoutController::class,'save_checkout_customer']);
 Route::get('/payment', [CheckoutController::class,'payment']);
+Route::post('/confirm_order', [CheckoutController::class,'confirm_order']);
 
 // oder-admin
-Route::get('/manage_oder', [CheckoutController::class,'manage_oder']);
-Route::get('/view_oder/{oderId}', [CheckoutController::class,'view_oder']);
+Route::get('/manage_oder', [OderController::class,'manage_oder']);
+Route::get('/view_oder/{oder_code}', [OderController::class,'view_oder']);
+Route::post('/update_oder_qty', [OderController::class, 'update_oder_qty']);
+Route::post('/update_qty', [OderController::class, 'update_qty']);
+
+
 
 
 // add to cart ajax

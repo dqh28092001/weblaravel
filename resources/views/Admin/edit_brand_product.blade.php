@@ -10,7 +10,7 @@
             <header class="panel-heading">
                 Cập Nhật Danh Mục Sản Phẩm
             </header>
-           
+
                 <?php
                     $message = Session::get('message');
                     if ($message) {
@@ -20,7 +20,7 @@
 	            ?>
                  <div class="panel-body">
                     @foreach($edit_brand_product as $key => $edit_value)
-                        
+
                 <div class="position-center">
                     <form role="form" action="{{ URL::to('/update_brand_product/'.$edit_value->brand_id) }}" method="post">
                         {{ csrf_field() }}
@@ -34,8 +34,14 @@
                             <textarea style="resize:none" rows="8" class="form-control" id="exampleInputPassword1"
                                 name="brand_product_desc">{{ $edit_value->brand_desc }}</textarea>
                         </div>
-                        
 
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Hiển Thị</label>
+                            <select name="brand_product_status" class="form-control input-sm m-bot15">
+                                <option value="0">Hiện Thị</option>
+                                <option value="1">Ẩn</option>
+                            </select>
+                        </div>
                         <button type="submit" name="update_brand_product" class="btn btn-info">Cập Nhật Danh Mục</button>
                     </form>
                 </div>
@@ -43,7 +49,7 @@
 
             </div>
         </section>
-        
+
     </div>
 </div>
 

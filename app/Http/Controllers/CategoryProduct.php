@@ -12,7 +12,7 @@ session_start();
 
 class CategoryProduct extends Controller
 {
-    // ngăn chặn người dùng chưa đăng nhập mà vô được bên trong 
+    // ngăn chặn người dùng chưa đăng nhập mà vô được bên trong
     public function AuthLogin(){
         $admin_id = Session::get('admin_id');
         if($admin_id){
@@ -45,10 +45,10 @@ class CategoryProduct extends Controller
         $data ['category_name'] = $request->category_product_name;
         $data ['category_desc'] = $request->category_product_desc;
         $data ['category_status'] = $request->category_product_status;
-        
+
         DB::table('tbl_category_product')->insert($data);
         Session::put('message', 'Thêm Danh Mục Sản Phẩm Thành Công');
-        return Redirect::to('/add_category_product');
+        return Redirect::to('/all_category_product');
 
     }
 
@@ -60,7 +60,7 @@ class CategoryProduct extends Controller
         Session::put('message', 'Ẩn Danh Mục Sản Phẩm Thành Công');
         return Redirect::to('/all_category_product');
     }
-    
+
     public function active_category_product($category_product_id)
     {
         $this->AuthLogin();
@@ -85,7 +85,7 @@ class CategoryProduct extends Controller
         $data = array();
         $data ['category_name'] = $request->category_product_name;
         $data ['category_desc'] = $request->category_product_desc;
-        
+
         DB::table('tbl_category_product')->where('category_id', $category_product_id)->update($data);
         Session::put('message', 'Cập Nhật Danh Mục Sản Phẩm Thành Công');
         return Redirect::to('/all_category_product');
@@ -99,10 +99,10 @@ class CategoryProduct extends Controller
         Session::put('message', 'Xóa Danh Mục Sản Phẩm Thành Công');
         return Redirect::to('/all_category_product');
     }
-    
+
     // End Function Admin  Page
 
-    // láy sản phẩm ra theo id của danh mục 
+    // láy sản phẩm ra theo id của danh mục
     public function show_category_home($category_id){
 
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderBy('category_id', 'desc')->get();

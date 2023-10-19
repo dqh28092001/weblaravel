@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 17, 2023 lúc 11:06 AM
+-- Thời gian đã tạo: Th10 19, 2023 lúc 11:51 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -131,6 +131,7 @@ INSERT INTO `tbl_admin` (`admin_id`, `admin_email`, `admin_password`, `admin_nam
 CREATE TABLE `tbl_brand_product` (
   `brand_id` int(10) UNSIGNED NOT NULL,
   `brand_name` varchar(255) NOT NULL,
+  `brand_slug` varchar(255) NOT NULL,
   `brand_desc` text NOT NULL,
   `brand_status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -141,13 +142,13 @@ CREATE TABLE `tbl_brand_product` (
 -- Đang đổ dữ liệu cho bảng `tbl_brand_product`
 --
 
-INSERT INTO `tbl_brand_product` (`brand_id`, `brand_name`, `brand_desc`, `brand_status`, `created_at`, `updated_at`) VALUES
-(1, 'Dior', 'DIOR official website. Discover Christian Dior fashion, fragrances and accessories for Women and Men.', 0, NULL, NULL),
-(2, 'Burberry', 'Burberry là một hãng thời trang sang trọng của Anh, phân phối quần áo thể thao độc đáo sang trọng, phụ kiện thời trang, nước hoa, kính mát, và mỹ phẩm.', 0, NULL, NULL),
-(3, 'Hermès', 'Hermès là một thương hiệu thời trang sang trọng bậc nhất, sản phẩm đặc trưng ngoài cà vạt và khăn lụa là dòng túi Birkin và dòng túi Kelly.', 0, NULL, NULL),
-(4, 'Chanel', 'Nước hoa Chanel – Đại diện của sự sang trọng, tinh tế và đẳng cấp. Chanel là một hãng thời trang Pháp, tại Paris được sáng lập bởi CoCo Chanel (1883 - 1971).', 0, NULL, NULL),
-(5, 'Louis Vuitton', 'Louis Vuitton (viết tắt là LV) là thương hiệu thời trang cao cấp đến từ Pháp danh giá bậc nhất thế giới, thành lập từ năm 1854, mang tên chính người sáng lập .', 0, NULL, NULL),
-(6, 'Gucci', 'Gucci là một thương hiệu hàng xa xỉ châu Âu được kiểm soát và chủ trì bởi doanh nhân người Pháp Bernard Arnault, người cũng đứng đầu LVMH, tập đoàn xa xỉ lớn ...', 0, NULL, NULL);
+INSERT INTO `tbl_brand_product` (`brand_id`, `brand_name`, `brand_slug`, `brand_desc`, `brand_status`, `created_at`, `updated_at`) VALUES
+(1, 'Dior', 'Dior', 'DIOR official website. Discover Christian Dior fashion, fragrances and accessories for Women and Men.', 0, NULL, NULL),
+(2, 'Burberry', 'Burberry', 'Burberry là một hãng thời trang sang trọng của Anh, phân phối quần áo thể thao độc đáo sang trọng, phụ kiện thời trang, nước hoa, kính mát, và mỹ phẩm.', 0, NULL, NULL),
+(3, 'Hermès', 'Hermès', 'Hermès là một thương hiệu thời trang sang trọng bậc nhất, sản phẩm đặc trưng ngoài cà vạt và khăn lụa là dòng túi Birkin và dòng túi Kelly.', 0, NULL, NULL),
+(4, 'Chanel', 'Chanel', 'Nước hoa Chanel – Đại diện của sự sang trọng, tinh tế và đẳng cấp. Chanel là một hãng thời trang Pháp, tại Paris được sáng lập bởi CoCo Chanel (1883 - 1971).', 0, NULL, NULL),
+(5, 'Louis Vuitton', 'Louis Vuitton', 'Louis Vuitton (viết tắt là LV) là thương hiệu thời trang cao cấp đến từ Pháp danh giá bậc nhất thế giới, thành lập từ năm 1854, mang tên chính người sáng lập .', 0, NULL, NULL),
+(6, 'Gucci', 'Gucci', 'Gucci là một thương hiệu hàng xa xỉ châu Âu được kiểm soát và chủ trì bởi doanh nhân người Pháp Bernard Arnault, người cũng đứng đầu LVMH, tập đoàn xa xỉ lớn ...', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -175,7 +176,8 @@ INSERT INTO `tbl_category_product` (`category_id`, `category_name`, `category_de
 (4, 'Fendi', 'Thương hiệu Fendi được khởi nguồn từ một cửa hàng chuyên về đồ da và lông thú do Edoarnado và Adele Fendi sáng lập. Độ tuổi của Fendi từ 20-50 tuổi.', 0, NULL, NULL),
 (5, 'Chanel', 'Nước hoa Chanel – Đại diện của sự sang trọng, tinh tế và đẳng cấp. Chanel là một hãng thời trang Pháp, tại Paris được sáng lập bởi CoCo Chanel (1883 - 1971).', 0, NULL, NULL),
 (6, 'Hermès', 'Hermès là một thương hiệu thời trang sang trọng bậc nhất, sản phẩm đặc trưng ngoài cà vạt và khăn lụa là dòng túi Birkin và dòng túi Kelly.', 0, NULL, NULL),
-(7, 'Louis Vuitton', 'Louis Vuitton (viết tắt là LV) là thương hiệu thời trang cao cấp đến từ Pháp danh giá bậc nhất thế giới, thành lập từ năm 1854, mang tên chính người sáng lập .', 0, NULL, NULL);
+(7, 'Louis Vuitton', 'Louis Vuitton (viết tắt là LV) là thương hiệu thời trang cao cấp đến từ Pháp danh giá bậc nhất thế giới, thành lập từ năm 1854, mang tên chính người sáng lập .', 0, NULL, NULL),
+(9, 'Burberry', 'ádasd', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -210,9 +212,8 @@ CREATE TABLE `tbl_oder` (
   `oder_id` bigint(20) UNSIGNED NOT NULL,
   `customer_id` int(11) NOT NULL,
   `shipping_id` int(11) NOT NULL,
-  `payment_id` int(11) NOT NULL,
-  `oder_total` varchar(50) NOT NULL,
   `oder_status` varchar(50) NOT NULL,
+  `oder_code` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -221,8 +222,9 @@ CREATE TABLE `tbl_oder` (
 -- Đang đổ dữ liệu cho bảng `tbl_oder`
 --
 
-INSERT INTO `tbl_oder` (`oder_id`, `customer_id`, `shipping_id`, `payment_id`, `oder_total`, `oder_status`, `created_at`, `updated_at`) VALUES
-(24, 7, 10, 24, '544,000', 'Đang chờ xử lý', NULL, NULL);
+INSERT INTO `tbl_oder` (`oder_id`, `customer_id`, `shipping_id`, `oder_status`, `oder_code`, `created_at`, `updated_at`) VALUES
+(28, 7, 22, '1', '9ddc8', '2023-10-19 03:09:22', NULL),
+(29, 7, 23, '1', 'c8cdb', '2023-10-19 03:18:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -232,7 +234,7 @@ INSERT INTO `tbl_oder` (`oder_id`, `customer_id`, `shipping_id`, `payment_id`, `
 
 CREATE TABLE `tbl_oder_detail` (
   `oder_detail_id` bigint(20) UNSIGNED NOT NULL,
-  `oder_id` int(11) NOT NULL,
+  `oder_code` varchar(50) NOT NULL,
   `product_id` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `product_price` varchar(50) NOT NULL,
@@ -245,30 +247,15 @@ CREATE TABLE `tbl_oder_detail` (
 -- Đang đổ dữ liệu cho bảng `tbl_oder_detail`
 --
 
-INSERT INTO `tbl_oder_detail` (`oder_detail_id`, `oder_id`, `product_id`, `product_name`, `product_price`, `product_sales_quantity`, `created_at`, `updated_at`) VALUES
-(39, 24, 7, 'Váy Đi Biển', '122000', 2, NULL, NULL),
-(40, 24, 8, 'Áo Khoác', '300000', 1, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `tbl_payment`
---
-
-CREATE TABLE `tbl_payment` (
-  `payment_id` bigint(20) UNSIGNED NOT NULL,
-  `payment_method` varchar(255) NOT NULL,
-  `payment_status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_payment`
---
-
-INSERT INTO `tbl_payment` (`payment_id`, `payment_method`, `payment_status`, `created_at`, `updated_at`) VALUES
-(24, '2', 'Đang chờ xử lý', NULL, NULL);
+INSERT INTO `tbl_oder_detail` (`oder_detail_id`, `oder_code`, `product_id`, `product_name`, `product_price`, `product_sales_quantity`, `created_at`, `updated_at`) VALUES
+(46, '9ddc8', 6, 'Giày Đen', '300000', 1, NULL, NULL),
+(47, '9ddc8', 3, 'Váy Thời Trang', '300000', 1, NULL, NULL),
+(48, '9ddc8', 8, 'Áo Khoác', '300000', 2, NULL, NULL),
+(49, '9ddc8', 1, 'Sơ Mi', '900000', 2, NULL, NULL),
+(50, 'c8cdb', 6, 'Giày Đen', '300000', 2, NULL, NULL),
+(51, 'c8cdb', 3, 'Váy Thời Trang', '300000', 2, NULL, NULL),
+(52, 'c8cdb', 8, 'Áo Khoác', '300000', 2, NULL, NULL),
+(53, 'c8cdb', 1, 'Sơ Mi', '900000', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -279,6 +266,8 @@ INSERT INTO `tbl_payment` (`payment_id`, `payment_method`, `payment_status`, `cr
 CREATE TABLE `tbl_product` (
   `product_id` int(10) UNSIGNED NOT NULL,
   `product_name` varchar(255) NOT NULL,
+  `product_quantity` varchar(50) NOT NULL,
+  `product_sold` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `brand_id` int(11) NOT NULL,
   `product_desc` text NOT NULL,
@@ -294,15 +283,15 @@ CREATE TABLE `tbl_product` (
 -- Đang đổ dữ liệu cho bảng `tbl_product`
 --
 
-INSERT INTO `tbl_product` (`product_id`, `product_name`, `category_id`, `brand_id`, `product_desc`, `product_content`, `product_price`, `product_image`, `product_status`, `created_at`, `updated_at`) VALUES
-(1, 'Sơ Mi', 7, 5, 'Dior là một thương hiệu hàng xa xỉ châu Âu được kiểm soát và chủ trì bởi doanh nhân người Pháp Bernard Arnault, người cũng đứng đầu LVMH, tập đoàn xa xỉ lớn ...', 'Dior là một thương hiệu hàng xa xỉ châu Âu được kiểm soát và chủ trì bởi doanh nhân người Pháp Bernard Arnault, người cũng đứng đầu LVMH, tập đoàn xa xỉ lớn ...', '900000', '65006f810807f_cac-thuong-hieu-thoi-trang-noi-tieng_1.png', 0, NULL, NULL),
-(2, 'Áo cọc', 6, 3, 'Mua áo cọc đôi chất lượng giá tốt, freeship toàn quốc 0Đ, áp dụng đến 6 tầng giảm giá. Ưu đãi mỗi ngày, hoàn tiền đến 300K. Mua ngay áo cọc đôi tại Lazada.\"\"\"\"', 'Mua áo cọc đôi chất lượng giá tốt, freeship toàn quốc 0Đ, áp dụng đến 6 tầng giảm giá. Ưu đãi mỗi ngày, hoàn tiền đến 300K. Mua ngay áo cọc đôi tại Lazada.\"\"\"\"', '122000', 'cac-thuong-hieu-thoi-trang-noi-tieng-2_67.png', 0, NULL, NULL),
-(3, 'Váy Thời Trang', 5, 4, 'Đa dạng lựa chọn: Áo chui đầu, cài khuy và áo cộc tay hoặc dài tay, cổ chữ V, cổ lọ hoặc cổ tròn. Vô cùng mềm mại, thoải mái và nhiều màu sắc. Khám phá ngay! ÁO ..\"\"\"\"\"\"\"\"\"\"\"\"', 'Đa dạng lựa chọn: Áo chui đầu, cài khuy và áo cộc tay hoặc dài tay, cổ chữ V, cổ lọ hoặc cổ tròn. Vô cùng mềm mại, thoải mái và nhiều màu sắc. Khám phá ngay! ÁO ..\"\"\"\"\"\"\"\"\"\"\"\"', '300000', 'rp-3_13.jpg', 0, NULL, NULL),
-(4, 'Váy Dạ Hội', 3, 2, 'Trong đây là những mẫu váy đi biển đẹp nhất được Lami Shop chọn lọc rất kỹ, với đủ màu sắc và kiểu dáng khác nhau như: váy maxi dài đi biển màu trắng, maxi đi ...\"\"\"\"', 'Trong đây là những mẫu váy đi biển đẹp nhất được Lami Shop chọn lọc rất kỹ, với đủ màu sắc và kiểu dáng khác nhau như: váy maxi dài đi biển màu trắng, maxi đi ...\"\"\"\"', '321000', 'rp-2_1.jpg', 0, NULL, NULL),
-(5, 'Túi xách', 1, 6, 'Bộ sư tập túi xách hàng hiệu, đẹp, cao cấp chính hãng đến từ thương hiệu Vascara, Túi xách Vascara luôn cập nhập những mẫu mới nhất phù hợp với mọi phong ...\"\"\"\"\"', 'Bộ sư tập túi xách hàng hiệu, đẹp, cao cấp chính hãng đến từ thương hiệu Vascara, Túi xách Vascara luôn cập nhập những mẫu mới nhất phù hợp với mọi phong ...\"\"\"\"\"', '321000', '65003d9442732_mau-tui-xach-moi-la-cao-cap-cua-loewe_35.png', 0, NULL, NULL),
-(6, 'Giày Đen', 5, 4, 'Mua online giày đen chất lượng, mới nhất, giảm tới 50% tại Shopee Việt Nam. Khuyến mãi tháng 10. Miễn phí vận chuyển. Mua ngay!', 'Mua online giày đen chất lượng, mới nhất, giảm tới 50% tại Shopee Việt Nam. Khuyến mãi tháng 10. Miễn phí vận chuyển. Mua ngay!', '300000', '650039d532026_cac-thuong-hieu-thoi-trang-noi-tieng-5_88.png', 0, NULL, NULL),
-(7, 'Váy Đi Biển', 1, 6, 'Mua đầm đi biển giao tận nơi và tham khảo thêm nhiều sản phẩm khác. Miễn phí vận chuyển toàn quốc cho mọi đơn hàng . Đổi trả dễ dàng. Thanh toán bảo mật.\"\"\"\"\"', 'Mua đầm đi biển giao tận nơi và tham khảo thêm nhiều sản phẩm khác. Miễn phí vận chuyển toàn quốc cho mọi đơn hàng . Đổi trả dễ dàng. Thanh toán bảo mật.\"\"\"\"\"', '122000', 'images_52.jfif', 0, NULL, NULL),
-(8, 'Áo Khoác', 7, 5, 'Mua sắm ngay áo khoác cho nam với nhiều màu sắc và kiểu dáng khác nhau từ những công nghệ tiên như chống UV, Siêu nhẹ và hơn thế nữa!', 'Mua sắm ngay áo khoác cho nam với nhiều màu sắc và kiểu dáng khác nhau từ những công nghệ tiên như chống UV, Siêu nhẹ và hơn thế nữa!', '300000', '65003e38cf0a7_pc-ao-khoac-du-nam-truot-nuoc-mau-xanh-da-quang-large-1669600982-6771_29.jpg', 0, NULL, NULL);
+INSERT INTO `tbl_product` (`product_id`, `product_name`, `product_quantity`, `product_sold`, `category_id`, `brand_id`, `product_desc`, `product_content`, `product_price`, `product_image`, `product_status`, `created_at`, `updated_at`) VALUES
+(1, 'Sơ Mi', '6', 12, 7, 5, 'Dior là một thương hiệu hàng xa xỉ châu Âu được kiểm soát và chủ trì bởi doanh nhân người Pháp Bernard Arnault, người cũng đứng đầu LVMH, tập đoàn xa xỉ lớn ...', 'Dior là một thương hiệu hàng xa xỉ châu Âu được kiểm soát và chủ trì bởi doanh nhân người Pháp Bernard Arnault, người cũng đứng đầu LVMH, tập đoàn xa xỉ lớn ...', '900000', '65006f810807f_cac-thuong-hieu-thoi-trang-noi-tieng_1.png', 0, NULL, NULL),
+(2, 'Áo cọc', '20', 0, 6, 3, 'Mua áo cọc đôi chất lượng giá tốt, freeship toàn quốc 0Đ, áp dụng đến 6 tầng giảm giá. Ưu đãi mỗi ngày, hoàn tiền đến 300K. Mua ngay áo cọc đôi tại Lazada.\"\"\"\"', 'Mua áo cọc đôi chất lượng giá tốt, freeship toàn quốc 0Đ, áp dụng đến 6 tầng giảm giá. Ưu đãi mỗi ngày, hoàn tiền đến 300K. Mua ngay áo cọc đôi tại Lazada.\"\"\"\"', '122000', 'cac-thuong-hieu-thoi-trang-noi-tieng-2_67.png', 0, NULL, NULL),
+(3, 'Váy Thời Trang', '22', 8, 5, 4, 'Đa dạng lựa chọn: Áo chui đầu, cài khuy và áo cộc tay hoặc dài tay, cổ chữ V, cổ lọ hoặc cổ tròn. Vô cùng mềm mại, thoải mái và nhiều màu sắc. Khám phá ngay! ÁO ..\"\"\"\"\"\"\"\"\"\"\"\"', 'Đa dạng lựa chọn: Áo chui đầu, cài khuy và áo cộc tay hoặc dài tay, cổ chữ V, cổ lọ hoặc cổ tròn. Vô cùng mềm mại, thoải mái và nhiều màu sắc. Khám phá ngay! ÁO ..\"\"\"\"\"\"\"\"\"\"\"\"', '300000', 'rp-3_13.jpg', 0, NULL, NULL),
+(4, 'Váy Dạ Hội', '10', 0, 3, 2, 'Trong đây là những mẫu váy đi biển đẹp nhất được Lami Shop chọn lọc rất kỹ, với đủ màu sắc và kiểu dáng khác nhau như: váy maxi dài đi biển màu trắng, maxi đi ...\"\"\"\"', 'Trong đây là những mẫu váy đi biển đẹp nhất được Lami Shop chọn lọc rất kỹ, với đủ màu sắc và kiểu dáng khác nhau như: váy maxi dài đi biển màu trắng, maxi đi ...\"\"\"\"', '321000', 'rp-2_1.jpg', 0, NULL, NULL),
+(5, 'Túi xách', '20', 0, 1, 6, 'Bộ sư tập túi xách hàng hiệu, đẹp, cao cấp chính hãng đến từ thương hiệu Vascara, Túi xách Vascara luôn cập nhập những mẫu mới nhất phù hợp với mọi phong ...\"\"\"\"\"', 'Bộ sư tập túi xách hàng hiệu, đẹp, cao cấp chính hãng đến từ thương hiệu Vascara, Túi xách Vascara luôn cập nhập những mẫu mới nhất phù hợp với mọi phong ...\"\"\"\"\"', '321000', '65003d9442732_mau-tui-xach-moi-la-cao-cap-cua-loewe_35.png', 0, NULL, NULL),
+(6, 'Giày Đen', '16', 12, 5, 4, 'Mua online giày đen chất lượng, mới nhất, giảm tới 50% tại Shopee Việt Nam. Khuyến mãi tháng 10. Miễn phí vận chuyển. Mua ngay!', 'Mua online giày đen chất lượng, mới nhất, giảm tới 50% tại Shopee Việt Nam. Khuyến mãi tháng 10. Miễn phí vận chuyển. Mua ngay!', '300000', '650039d532026_cac-thuong-hieu-thoi-trang-noi-tieng-5_88.png', 0, NULL, NULL),
+(7, 'Váy Đi Biển', '60', 0, 1, 6, 'Mua đầm đi biển giao tận nơi và tham khảo thêm nhiều sản phẩm khác. Miễn phí vận chuyển toàn quốc cho mọi đơn hàng . Đổi trả dễ dàng. Thanh toán bảo mật.\"\"\"\"\"', 'Mua đầm đi biển giao tận nơi và tham khảo thêm nhiều sản phẩm khác. Miễn phí vận chuyển toàn quốc cho mọi đơn hàng . Đổi trả dễ dàng. Thanh toán bảo mật.\"\"\"\"\"', '122000', 'images_52.jfif', 0, NULL, NULL),
+(8, 'Áo Khoác', '8', 12, 7, 5, 'Mua sắm ngay áo khoác cho nam với nhiều màu sắc và kiểu dáng khác nhau từ những công nghệ tiên như chống UV, Siêu nhẹ và hơn thế nữa!\"', 'Mua sắm ngay áo khoác cho nam với nhiều màu sắc và kiểu dáng khác nhau từ những công nghệ tiên như chống UV, Siêu nhẹ và hơn thế nữa!\"', '300000', '65003e38cf0a7_pc-ao-khoac-du-nam-truot-nuoc-mau-xanh-da-quang-large-1669600982-6771_29.jpg', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -317,6 +306,7 @@ CREATE TABLE `tbl_shipping` (
   `shipping_phone` varchar(255) NOT NULL,
   `shipping_email` varchar(255) NOT NULL,
   `shipping_note` text NOT NULL,
+  `shipping_method` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -325,17 +315,9 @@ CREATE TABLE `tbl_shipping` (
 -- Đang đổ dữ liệu cho bảng `tbl_shipping`
 --
 
-INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_address`, `shipping_phone`, `shipping_email`, `shipping_note`, `created_at`, `updated_at`) VALUES
-(1, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'awfsadf', NULL, NULL),
-(2, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'dsasd', NULL, NULL),
-(3, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'đâsd', NULL, NULL),
-(4, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'sÂs', NULL, NULL),
-(5, 'huydang', 'trungnuwvuon', '1234567890rưe', 'dqh28092001@gmail.com', 'ử', NULL, NULL),
-(6, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'dczcdzdsd', NULL, NULL),
-(7, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'adasd', NULL, NULL),
-(8, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'ádasdasd', NULL, NULL),
-(9, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'ádasd', NULL, NULL),
-(10, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'saddsas', NULL, NULL);
+INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_address`, `shipping_phone`, `shipping_email`, `shipping_note`, `shipping_method`, `created_at`, `updated_at`) VALUES
+(22, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'adasd', 1, NULL, NULL),
+(23, 'huydang', 'trungnuwvuon', '1234567890', 'dqh28092001@gmail.com', 'adasda', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -422,12 +404,6 @@ ALTER TABLE `tbl_oder_detail`
   ADD PRIMARY KEY (`oder_detail_id`);
 
 --
--- Chỉ mục cho bảng `tbl_payment`
---
-ALTER TABLE `tbl_payment`
-  ADD PRIMARY KEY (`payment_id`);
-
---
 -- Chỉ mục cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
@@ -477,13 +453,13 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT cho bảng `tbl_brand_product`
 --
 ALTER TABLE `tbl_brand_product`
-  MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_category_product`
 --
 ALTER TABLE `tbl_category_product`
-  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_customers`
@@ -495,19 +471,13 @@ ALTER TABLE `tbl_customers`
 -- AUTO_INCREMENT cho bảng `tbl_oder`
 --
 ALTER TABLE `tbl_oder`
-  MODIFY `oder_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `oder_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_oder_detail`
 --
 ALTER TABLE `tbl_oder_detail`
-  MODIFY `oder_detail_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
-
---
--- AUTO_INCREMENT cho bảng `tbl_payment`
---
-ALTER TABLE `tbl_payment`
-  MODIFY `payment_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `oder_detail_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_product`
@@ -519,7 +489,7 @@ ALTER TABLE `tbl_product`
 -- AUTO_INCREMENT cho bảng `tbl_shipping`
 --
 ALTER TABLE `tbl_shipping`
-  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `users`

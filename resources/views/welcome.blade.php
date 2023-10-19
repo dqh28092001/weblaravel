@@ -334,7 +334,7 @@
     <script src="{{ asset('FE/js/sweetalert.min.js') }}"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
-
+    {{-- add to cart --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $('.add-to-cart').click(function() {
@@ -379,6 +379,60 @@
         });
     </script>
 
+    {{--  --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.send_oder').click(function() {
+                swal({
+                        title: "Xác Nhận Đơn Hàng?",
+                        text: "Đơn Hàng Sẽ Không Được Hoàn Trả Khi Đặt,Bạn Có Muốn Đặt Không?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        cancelButtonText: "Đóng , Chưa Mua!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false,
+                        confirmButtonText: " Đặt Hàng!",
+                        closeOnConfirm: false
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            var shipping_email = $('.shipping_email').val();
+                            var shipping_name = $('.shipping_name').val();
+                            var shipping_address = $('.shipping_address').val();
+                            var shipping_phone = $('.shipping_phone').val();
+                            var shipping_note = $('.shipping_note').val();
+                            var shipping_method = $('.payment_select').val();
+                            var _token = $('input[name="_token"]').val();
+                            $.ajax({
+                                url: '{{ url('/confirm_order') }}',
+                                method: 'POST',
+                                data: {
+                                    shipping_email: shipping_email,
+                                    shipping_name: shipping_name,
+                                    shipping_address: shipping_address,
+                                    shipping_phone: shipping_phone,
+                                    shipping_note: shipping_note,
+                                    shipping_method: shipping_method,
+                                    _token: _token
+                                },
+                                success: function() {
+                                    swal("Đơn Hàng!",
+                                        "Đơn Hàng Của Bạn Đã Được Gửi Thành Công.",
+                                        "success");
+                                }
+                            });
+                            window.setTimeout(function() => {
+                                location.reload();
+                            }, 3000);
+                        } else {
+                            swal("Đóng", "Đơn Hàng Chưa Được Gửi , Làm Ơn Hoàn Tất Đơn Hàng :)",
+                                "error");
+                        }
+                    });
+            });
+        });
+    </script>
 </body>
 
 </html>

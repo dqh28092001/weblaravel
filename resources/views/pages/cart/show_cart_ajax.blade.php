@@ -117,7 +117,23 @@
                             </div>
 
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <a href="{{ URL::to('/checkout') }}" class="primary-btn">Proceed to checkout</a>
+                            <?php
+                                $customer_id = Session::get('customer_id');
+                                if ($customer_id != NULL) {
+                                ?>
+                            <a href="{{ URL::to('/show_checkout') }}" class="primary-btn" style="margin-top: 1pc">Thanh
+                                Toán</a>
+
+                            <?php
+                            }else {
+                            ?>
+                            <a href="{{ URL::to('/login_checkout') }}" class="primary-btn" style="margin-top: 1pc">Thanh
+                                Toán</a>
+
+                            <?php
+                            }
+                            ?>
                     </div>
                 </div>
             </div>

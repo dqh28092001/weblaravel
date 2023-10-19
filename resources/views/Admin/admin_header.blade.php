@@ -309,6 +309,88 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <!-- //calendar -->
+
+    {{-- xử lý về đơn hàng còn trong kho product  --}}
+    <script type="text/javascript">
+        $('.oder_detail').change(function() {
+            var oder_status = $(this).val();
+            var oder_id = $(this).children(":selected").attr("id");
+            var _token = $('input[name="_token"]').val();
+
+            //lay ra so luong
+            quantity = [];
+            $("input[name='product_sales_quantity']").each(function() {
+                quantity.push($(this).val());
+            });
+            //lay ra product id
+            oder_product_id = [];
+            $("input[name='oder_product_id']").each(function() {
+                oder_product_id.push($(this).val());
+            });
+            j = 0;
+            for (i = 0; i < oder_product_id.length; i++) {
+                //so luong khach dat
+                var oder_qty = $('.oder_qty_' + oder_product_id[i]).val();
+                //so luong ton kho
+                var oder_qty_storage = $('.oder_qty_storage_' + oder_product_id[i]).val();
+
+                if (parseInt(oder_qty) > parseInt(oder_qty_storage)) {
+                    j = j + 1;
+                    if (j == 1) {
+                        alert('Số lượng bán trong kho không đủ');
+                    }
+                    $('.color_qty_' + oder_product_id[i]).css('background', '#000');
+                }
+            }
+            if (j == 0) {
+
+                $.ajax({
+                    url: '{{ url('/update_oder_qty') }}',
+                    method: 'POST',
+                    data: {
+                        oder_status: oder_status,
+                        oder_id: oder_id,
+                        quantity: quantity,
+                        oder_product_id: oder_product_id,
+                        _token: _token
+                    },
+                    success: function() {
+                        alert('Thay đổi tình trạng đơn hàng thành công');
+                        location.reload();
+                    }
+                });
+            }
+        })
+    </script>
+
+
+    {{-- cập nhật số lượng trong admin đơn hàng --}}
+    <script type="text/javascript">
+        $('.update_quantity_oder').click(function() {
+            var oder_product_id = $(this).data('product_id');
+            var oder_qty = $('.oder_qty_' + oder_product_id).val();
+            var oder_code = $('.oder_code').val();
+            var _token = $('input[name="_token"]').val();
+
+            $.ajax({
+                url: '{{ url('/update_qty') }}',
+                method: 'POST',
+                data: {
+                    _token: _token,
+                    oder_product_id: oder_product_id,
+                    oder_qty: oder_qty,
+                    oder_code: oder_code
+                },
+                // dataType:"JSON",
+                success: function(data) {
+
+                    alert('Cập nhật số lượng thành công');
+
+                    location.reload();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

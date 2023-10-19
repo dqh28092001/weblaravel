@@ -3,7 +3,8 @@
     <section id="cart_items">
         <div class="container">
             <div class="register-req">
-                <p  style="margin-left: 16pc;">Làm Ơn Đăng Kí Hoặc Đăng Nhập Để Thanh Toán Giỏ Hàng Và Xem Lại Lịch Sử Mua Hàng</p>
+                <p style="margin-left: 16pc;">Làm Ơn Đăng Kí Hoặc Đăng Nhập Để Thanh Toán Giỏ Hàng Và Xem Lại Lịch Sử Mua
+                    Hàng</p>
             </div><!--/register-req-->
             <div class="shopper-informations">
                 <div class="row">
@@ -13,15 +14,25 @@
                         <div class="bill-to">
                             <p style="margin-left: 9pc;">Điền Thông Tin Gửi Hàng</p>
                             <div class="form-one">
-                                <form action="{{ URL::to('/save_checkout_customer')}}" method="POST">
-                                    {{ csrf_field() }}
-                                    <input type="text" name="shipping_email" placeholder="Email">
-                                    <input type="text" name="shipping_name" placeholder="Name ">
-                                    <input type="text" name="shipping_address" placeholder="Address">
-                                    <input type="text" name="shipping_phone"  placeholder="Phone">
-                                    <textarea  name="shipping_note" placeholder="Ghi Chú Đơn Hàng Của Bạn" rows="16"></textarea>
-                                    <input type="submit" value="Gửi" name="send_oder" class="btn btn-primary btn-sm" >
-                        </form>
+                                <form method="POST">
+                                    @csrf
+                                    <input type="text" name="shipping_email" class="shipping_email" placeholder="Email">
+                                    <input type="text" name="shipping_name" class="shipping_name" placeholder="Name ">
+                                    <input type="text" name="shipping_address" class="shipping_address"
+                                        placeholder="Address">
+                                    <input type="text" name="shipping_phone" class="shipping_phone" placeholder="Phone">
+                                    <textarea name="shipping_note" class="shipping_note" placeholder="Ghi Chú Đơn Hàng Của Bạn" rows="16"></textarea>
+
+                                    <div class="">
+                                        <label for="exampleInputPassword1">Chọn Hình Thức Thanh Toán</label>
+                                        <select name="payment_select" class="form-control input-sm m-bot15 payment_select">
+                                            <option value="0">Qua chuyển khoản </option>
+                                            <option value="1">Tiền Mặt</option>
+                                        </select>
+                                    </div>
+                                    <input type="button" value="Xác Nhận Đơn Hàng" name="send_oder"
+                                        class="btn btn-primary btn-sm send_oder">
+                                </form>
                             </div>
                         </div>
                     </div>
